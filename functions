@@ -1,0 +1,42 @@
+import math
+
+
+# create function for calculating distance
+def calculate_distance(x1, y1, x2, y2):
+    distance = math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
+    return distance
+
+
+# create function to read input file and store coordinates of points A & B
+def read_store_coordinates():
+    with open("Coordinates_A.txt", "r") as userinput_file_a:
+        coordinates_a_list = []
+        for line in userinput_file_a:
+            x, y = map(float, line.strip().split(','))
+            coordinates_a_list.append((x, y))
+        print(coordinates_a_list)
+
+    with open("Coordinates_B.txt", "r") as userinput_file_b:
+        coordinates_b_list = []
+        for line in userinput_file_b:
+            x, y = map(float, line.strip().split(','))
+            coordinates_b_list.append((x, y))
+        print(coordinates_b_list)
+
+    return coordinates_a_list, coordinates_b_list
+
+
+# create a function to iterate over coordinates for calculation
+def iterate_over_coordinates(list_a, list_b):
+    # Iterate over each coordinate in coordinates_a_list
+    for x1, y1 in list_a:
+        # Iterate over each coordinate in coordinates_b_list
+        for x2, y2 in list_b:
+            distance = calculate_distance(x1, y1, x2, y2)
+            print(f"Die Distanz zwischen ({x1}, {y1}) und ({x2}, {y2}) beträgt {distance:.2f}")
+
+
+list_a, list_b = read_store_coordinates()
+print(list_a)
+print(list_b)
+iterate_over_coordinates(list_a, list_b)
